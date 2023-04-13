@@ -1,15 +1,12 @@
 package ru.stqa.pft.appmanager;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -43,12 +40,8 @@ public class ApplicationManager {
 
   }
 
-
-
-
   public void stop() {
     wd.quit();
   }
-
 
 }
