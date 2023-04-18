@@ -17,13 +17,19 @@ public class ApplicationManager {
   private WebDriver wd;
   private String browser;
   private RegistrationHelper registrationHelper;
+  private FtpHelper ftp;
 
 
   public ApplicationManager(String browser) {
     this.browser = browser;
     properties = new Properties();
   }
-
+public FtpHelper ftp() {
+  if (ftp == null) {
+    ftp = new FtpHelper(this);
+  }
+  return ftp;
+}
 
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
