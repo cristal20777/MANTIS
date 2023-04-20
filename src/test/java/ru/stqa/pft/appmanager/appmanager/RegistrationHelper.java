@@ -1,4 +1,4 @@
-package ru.stqa.pft.appmanager;
+package ru.stqa.pft.appmanager.appmanager;
 
 import org.openqa.selenium.By;
 
@@ -17,5 +17,12 @@ public class RegistrationHelper extends HelperBase {
     type(By.name("email"), email);
     click(By.cssSelector("input[value='Зарегистрироваться']"));
 
+  }
+
+  public void finish(String confirmationLink, String password) {
+    wd.get(confirmationLink);
+    type(By.name("password"), password);
+    type(By.name("password_confirm"), password);
+    click(By.cssSelector("span[class='width-40 btn btn-inverse bigger-110 btn-success']"));
   }
 }

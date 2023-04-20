@@ -1,6 +1,7 @@
-package ru.stqa.pft.appmanager;
+package ru.stqa.pft.appmanager.appmanager;
 
 import org.apache.commons.net.ftp.FTPClient;
+import ru.stqa.pft.appmanager.appmanager.ApplicationManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,18 +19,18 @@ public class FtpHelper {
   public void restore(String backup, String target) throws IOException {
     ftp.connect(app.getProperty("ftp.host"));
     ftp.login(app.getProperty("ftp.login"), app.getProperty("ftp.password"));
-    ftp.deleteFile("/config/" + target);
-    ftp.rename("/config/" + backup, "/config/" + target);
+    ftp.deleteFile(target);
+    ftp.rename(backup,target);
     ftp.disconnect();
   }
 
   public void upload(File file,String target, String backup) throws IOException {
     ftp.connect(app.getProperty("ftp.host"));
     ftp.login(app.getProperty("ftp.login"), app.getProperty("ftp.password"));
-    ftp.deleteFile("/config/" + backup);
-    ftp.rename("/config/" + target, "/config/" + backup);
+   ftp.deleteFile(backup);
+    ftp.rename(target, backup);
     ftp.enterLocalPassiveMode();
-    ftp.storeFile("/config/" + target, new FileInputStream(file));
+    ftp.storeFile(target, new FileInputStream(file));
     ftp.disconnect();
 
   }

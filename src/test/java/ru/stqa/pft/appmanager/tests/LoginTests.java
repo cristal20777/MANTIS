@@ -1,7 +1,7 @@
-package tests;
+package ru.stqa.pft.appmanager.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.appmanager.HttpSession;
+import ru.stqa.pft.appmanager.appmanager.HttpSession;
 
 import java.io.IOException;
 

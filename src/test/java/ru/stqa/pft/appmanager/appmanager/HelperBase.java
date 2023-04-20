@@ -1,4 +1,4 @@
-package ru.stqa.pft.appmanager;
+package ru.stqa.pft.appmanager.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;

@@ -4,8 +4,9 @@ $g_db_type                = 'mysqli';
 $g_database_name          = 'bugtracker';
 $g_db_username            = 'root';
 $g_db_password            = '';
-$g_signup_use_captcha = OFF;
+$g_signup_use_captcha=OFF;
+$g_phpMailer_method = PHPMAILER_METHOD_SMTP;
+$g_smtp_host = 'localhost';
+$g_default_timezone       = 'Europe/Berlin';
 
-ftp.host=localhost
-ftp.login=mantis
-ftp.password=mantis
+$g_crypto_master_salt     = 'W86qTk/rm0S6RZwq+1cMqjW88rTX9druXh8blidpjkQ=';

@@ -1,9 +1,9 @@
-package tests;
+package ru.stqa.pft.appmanager.tests;
 
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import ru.stqa.pft.appmanager.ApplicationManager;
+import ru.stqa.pft.appmanager.appmanager.ApplicationManager;
 
 import java.io.File;
 
