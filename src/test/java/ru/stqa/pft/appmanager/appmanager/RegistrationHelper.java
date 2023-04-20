@@ -23,6 +23,6 @@ public class RegistrationHelper extends HelperBase {
     wd.get(confirmationLink);
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
-    click(By.cssSelector("span[class='width-40 btn btn-inverse bigger-110 btn-success']"));
+    click(By.cssSelector("span[class='bigger-110']"));
   }
 }
