@@ -22,13 +22,14 @@ public class ChangePassword extends TestBase {
   @Test
   public void changePassword() throws MessagingException, IOException {
     app.login().loginAdmin();
-    app.login().managementUsers(By.xpath("//div[@id='sidebar']/ul/li[6]/a/i"));
+    app.login().openSidebar();
+    app.login().managementUsers();
     String username = String.format(app.getDriver().findElement(By.xpath("//tbody/tr[2]/td[1]/a")).getText());
     String email2 = String.format(app.getDriver().
             findElement(By.xpath("//tbody/tr[2]/td[3]")).getText());
     String password2 = "root2";
-    app.login().click(By.linkText(String.format("%s", username)));
-    app.login().click(By.cssSelector("input[value='Сбросить пароль'"));
+    app.login().choiceUser(username);
+    app.login().resetPassword();
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email2);
     app.registration().finish(confirmationLink, password2, username);

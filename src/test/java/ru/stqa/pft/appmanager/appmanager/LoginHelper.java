@@ -18,9 +18,17 @@ public class LoginHelper extends HelperBase {
   public void loginAdmin() {
     login("administrator", "root1");
   }
+  public void openSidebar () {
+    click(By.xpath("//div[@id='sidebar']/ul/li[6]/a/i"));
+  }
 
-  public void managementUsers (By locator) {
-    app.login().click(locator);
+  public void managementUsers () {
     app.login().click(By.linkText("Управление пользователями"));
+  }
+  public void choiceUser (String username) {
+    click(By.linkText(String.format("%s", username )));
+  }
+  public void resetPassword (){
+    click(By.cssSelector("input[value='Сбросить пароль'"));
   }
 }

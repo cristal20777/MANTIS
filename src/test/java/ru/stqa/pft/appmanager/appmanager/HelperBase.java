@@ -9,19 +9,19 @@ import java.util.List;
 public class HelperBase {
 
   protected ApplicationManager app;
-  protected WebDriver wd;
+  protected static WebDriver wd;
 
   public HelperBase(ApplicationManager app) {
 
     this.app = app;
     this.wd = app.getDriver();
   }
-public void click(By locator) {
+public static void click(By locator) {
 
     wd.findElement(locator).click();
   }
 
-  protected void type(By locator, String text) {
+  protected static void type(By locator, String text) {
     wd.findElement(locator).click();
     if (text != null) {
       String existingText = wd.findElement(locator).getAttribute("value");
