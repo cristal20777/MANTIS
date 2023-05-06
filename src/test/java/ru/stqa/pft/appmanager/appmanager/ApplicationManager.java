@@ -1,6 +1,7 @@
 package ru.stqa.pft.appmanager.appmanager;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -90,5 +91,16 @@ public FtpHelper ftp() {
       loginHelper = new LoginHelper(this);
     }
     return loginHelper;
+  }
+
+  public String getUsername() {
+    String user = String.format(getDriver().findElement(By.xpath("//tbody/tr[2]/td[1]/a")).getText());
+    return user;
+  }
+
+  public String getEmail() {
+    String email = String.format(getDriver().
+            findElement(By.xpath("//tbody/tr[2]/td[3]")).getText());
+    return email;
   }
 }
