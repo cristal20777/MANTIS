@@ -22,6 +22,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
   private LoginHelper loginHelper;
+  private SoapHelper soapHelper;
 
 
   public ApplicationManager(String browser) {
@@ -102,5 +103,12 @@ public FtpHelper ftp() {
     String email = String.format(getDriver().
             findElement(By.xpath("//tbody/tr[2]/td[3]")).getText());
     return email;
+  }
+
+  public SoapHelper soap(){
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
   }
 }
