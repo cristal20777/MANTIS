@@ -21,7 +21,8 @@ public class SoapHelper {
   }
   public Set<Project> getProjects() throws MalformedURLException, ServiceException, RemoteException {
     MantisConnectPortType mc = getMantisConnect();
-    ProjectData[] projects = mc.mc_projects_get_user_accessible("administrator", "root1");
+    ProjectData[] projects = mc.mc_projects_get_user_accessible(app
+            .getProperty("mantis.admin"), app.getProperty("mantis.password"));
     return Arrays.asList(projects).stream().map((p)->new Project().withId(p.getId().intValue()).withName(p.getName()))
             .collect(Collectors.toSet());
 
@@ -29,20 +30,23 @@ public class SoapHelper {
 
   public MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
     MantisConnectPortType mc = new MantisConnectLocator()
-            .getMantisConnectPort(new URL("http://localhost/mantisbt-2.25.6/api/soap/mantisconnect.php"));
+            .getMantisConnectPort(new URL(app.getProperty("mantis.soapUrl")));
     return mc;
   }
 
   public Issue addIssue(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
     MantisConnectPortType mc = getMantisConnect();
-    String [] categories = mc.mc_project_get_categories("administrator", "root1",BigInteger.valueOf(issue.getProject().getId()));
+    String [] categories = mc.mc_project_get_categories(app
+            .getProperty("mantis.admin"), app.getProperty("mantis.password"),BigInteger.valueOf(issue.getProject().getId()));
     IssueData issueData=new IssueData();
     issueData.setSummary(issue.getSummary());
     issueData.setDescription(issue.getDescription());
     issueData.setProject(new ObjectRef(BigInteger.valueOf(issue.getProject().getId()),issue.getProject().getName()));
     issueData.setCategory(categories[0]);
-    BigInteger issueId = mc.mc_issue_add("administrator", "root1",issueData);
-    IssueData createdIssueData = mc.mc_issue_get("administrator", "root1",issueId);
+    BigInteger issueId = mc.mc_issue_add(app
+            .getProperty("mantis.admin"), app.getProperty("mantis.password"),issueData);
+    IssueData createdIssueData = mc.mc_issue_get(app
+            .getProperty("mantis.admin"), app.getProperty("mantis.password"),issueId);
     return new Issue().withId(createdIssueData.getId().intValue())
             .withSummary(createdIssueData.getSummary()).withDescription(createdIssueData.getDescription())
             .withProject(new Project().withId(createdIssueData.getProject().getId().intValue())
